@@ -1,6 +1,5 @@
 import torch
 import torchvision.transforms as T
-import pandas as pd
 from .unet import UNet
 
 

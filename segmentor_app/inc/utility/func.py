@@ -30,21 +30,28 @@ def denormal(pil_image, img_stats=stats):
 
 
 def pil_preparation(path, transform=transformer):
-    """get numpy image convert to PIL and apply transform
+    """get image path convert to PIL and apply transform
 
     Args:
-        frame (numpy array): 
+        path (str): 
         transform (optional): Defaults to transformer.
 
     Returns:
         Tensor Image: Ready to go to Torch model
     """
-    pil_frame = Image.open(path).convert('RGB')
-    pil_frame = transform(pil_frame)
-    return pil_frame
+    pil_image = Image.open(path).convert('RGB')
+    pil_image = transform(pil_image)
+    return pil_image
 
 
 def get_pred(image, model=loaded_model, device=device):
+    """get image and apply on model to get segmented result and save it.
+
+    Args:
+        image (str, pil): if str pil image will provided by pil_preparation, if pil size must be [3, 160, 240]
+        model (Torch, optional): segmenter. Defaults to loaded_model.
+        device (str, optional): 'cuda' or 'cpu. Defaults to device.
+    """
     save_path = './media/images/results.png'
     if type(image) == str:
         name = image.split('/')[-1]
