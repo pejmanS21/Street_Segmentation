@@ -1,0 +1,10 @@
+Django
+torch
+torchvision
+numpy
+opencv-python
+pillow
+deep_utils
+matplotlib
+gdown
+docker-compose
